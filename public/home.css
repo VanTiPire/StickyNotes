@@ -26,6 +26,13 @@ body{
   border-radius: 20px;
 }
 
+.separa{
+  width: 2px; /* Thin vertical line */
+  height: 35px; /* Matches menu height */
+  background-color: #555;
+  border-radius: 20px;
+}
+
 .header {
   position:fixed;
   width: 100%;
@@ -66,5 +73,260 @@ body{
 .header img:hover, .header-menu div:hover{
   cursor: pointer;
   transform: scale(1.08);
+  transition: 0.3s;
+}
+
+.recent-folders,
+.my-notes {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.folders,
+.notes {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+
+.folder,
+.note {
+  width: 280px;
+  height: 180px;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+#folder-name{
+  background-color: #444; /* Darker background for textarea */
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+  resize: none;
+  outline: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3); /* Inner shadow for depth */
+}
+
+.folder-name {
+  font-family: 'Montserrat SemiBold', sans-serif;
+  font-size: 22px;
+  padding-bottom: 10px;
+  margin:0;
+}
+
+.folder-date {
+  font-family: 'Montserrat Medium', sans-serif;
+  font-size: 12px;
+  color: rgb(104, 104, 104);
+}
+
+.new-folder,
+.new-note {
+  font-size: 14px;
+  width: 148px;
+  height: 148px;
+  border-radius: 20px;
+
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  align-items: center;
+  justify-content: center;
+  border: 3px dashed #ccc;
+  background-color: none;
+  transition: 0.3s;
+  background-color: #f5f5f5;
+}
+
+.folder-info {
+  display: flex;
+  /* Use Flexbox */
+  justify-content: space-between;
+  /* Space elements on the row */
+  align-items: flex-start;
+  /* Align vertically */
+}
+
+.folder-text {
+  display: flex;
+  flex-direction: column;
+  /* Keep name and date stacked */
+}
+
+.folder-actions {
+  padding-top: 4px;
+  display: flex;
+  gap: 10px;
+  /* Space between edit and delete icons */
+}
+
+.folder-actions img {
+  width: 20px;
+  /* Adjust icon size as needed */
+  height: 20px;
+  cursor: pointer;
+  /* Add pointer cursor for interaction */
+}
+
+.logout {
+  border-radius: 20px;
+	border: 1px solid #565555;
+  background-color: rgba(255, 255, 255, 0);
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+  border-color: #FFFFFF;
+	transition: 0.3s;
+  margin-right:30px;
+}
+
+.logout:hover {
+	background-color: rgba(255, 255, 255, 0.5);
+	transition: 0.3s;
+}
+
+.folder-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.folder-popup .popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #333; /* Dark background to match the menu */
+  color: #fff; /* Light text for contrast */
+  border: 1px solid #444; /* Slightly darker border for separation */
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+  z-index: 1000;
+  width: 350px;
+  border-radius: 10px; /* Rounded corners for a modern look */
+}
+
+.folder-popup .popup-content label {
+  font-family: 'Montserrat SemiBold', sans-serif;
+}
+
+.folder-popup .color-options {
+  display: flex;
+  gap: 10px;
+}
+
+.folder-popup .color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.folder-popup .color-option.selected {
+  border-color: rgb(255, 255, 255);
+}
+
+.folder-popup .color-option:hover {
+  border-color: #fdfd96; /* Highlight border on hover */
+  transform: scale(1.2);
+  transition: 0.3s;
+}
+
+.folder-popup .popup-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.folder-popup button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.folder-popup #create-folder {
+  background-color: #4caf50;
+  color: white;
+}
+
+.folder-popup #cancel-folder {
+  background-color: #f44336;
+  color: white;
+}
+
+
+.folder-filters, .note-filters {
+
+  font-size: 17px;
+  padding-bottom: 15px;
+  font-family: 'Montserrat Medium', sans-serif;
+  display: flex;
+  /* Use Flexbox */
+  gap: 40px;
+  align-items: flex-start;
+  /* Align vertically */
+}
+
+.folder-filters div, .note-filters div {
+  cursor: pointer;
+  color: lightgrey;
+  transition: color 0.3s ease;
+}
+
+h2{
+  font-family: 'Montserrat SemiBold', sans-serif;
+}
+
+.folder-filters div.active, .note-filters div.active {
+  color: rgb(154, 154, 154);
+  /* Active color */
+  font-family: 'Montserrat SemiBold', sans-serif;
+}
+
+.section-title {
+  font-family: 'Montserrat SemiBold', sans-serif;
+  font-size: 27px;
+  padding-bottom: 15px;
+}
+
+
+.folder:hover , .note:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+.folder, .note{
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.12);
+  transition: 0.3s;
+}
+
+.new-folder:hover, .new-note:hover {
+  background-color: #ffffff;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.12);
+  transform: scale(1.02);
   transition: 0.3s;
 }
