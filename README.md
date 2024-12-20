@@ -1,4 +1,4 @@
-#Interactive Note Management System
+##Interactive Note Management System
 Sticky Notes Application
 
 This project is a web-based interactive note management system designed to help users organize and manage their notes and folders. It features a dashboard for quick access to recent workspaces and folders, along with a dynamic sticky note workspace equipped with drag-and-drop and editing capabilities.
