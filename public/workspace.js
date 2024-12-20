@@ -96,13 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (username) {
     
     fetch(`/api/notes?username=${username}`)
-      .then(response => response.json())
-      .then(notes => {
-        notes.forEach(note => {
-          createStickyNote(note.color, note.text, note.left, note.top);  
-        });
-      })
-      .catch(error => console.error('Error fetching notes:', error));
+    .then(response => response.json())
+    .then(notes => {
+      notes.forEach(note => {
+        createStickyNote(note.color, note.text, note.title, note.left, note.top);  
+      });
+    })
+    .catch(error => console.error('Error fetching notes:', error));
   }
 
   
@@ -114,28 +114,27 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
    
-   function createStickyNote(color, text = '', left = 100, top = 100) {
+  function createStickyNote(color, text = '', title = '', left = 100, top = 100) {
     const note = document.createElement('div');
     note.classList.add('sticky-note');
     note.style.backgroundColor = color;
     note.style.left = `${left}px`;
     note.style.top = `${top}px`;
-
+  
     note.innerHTML = `
       <button class="delete-btn"> <img src="images/delete.svg" alt="Delete"></button>
-       <textarea placeholder="Write your note..."></textarea>
+      <input type="text" class="note-title" placeholder="Write your title..." value="${title}">
+      <textarea placeholder="Write your note...">${text}</textarea>
       <button class="edit-btn"> <img src="images/edit.svg" alt="Edit"></button>
     `;
-
-    
+  
     note.querySelector('.delete-btn').addEventListener('click', () => {
       if (confirm('Are you sure you want to delete this note?')) note.remove();
       saveNotes();  
     });
-
-    
+  
     note.querySelector('.edit-btn').addEventListener('click', () => openEditor(note));
-
+  
     makeDraggable(note);
     workspace.appendChild(note);
   }
@@ -144,17 +143,17 @@ document.addEventListener('DOMContentLoaded', () => {
   function saveNotes() {
     const notes = [];
     const stickyNotes = workspace.querySelectorAll('.sticky-note');
-
+  
     stickyNotes.forEach(note => {
       const color = note.style.backgroundColor;
       const text = note.querySelector('textarea').value;
+      const title = note.querySelector('.note-title').value;
       const left = parseInt(note.style.left, 10);
       const top = parseInt(note.style.top, 10);
-
-      notes.push({ color, text, left, top });
+  
+      notes.push({ color, title, text, left, top });
     });
-
-    
+  
     const username = localStorage.getItem('username');
     fetch('/api/saveNotes', {
       method: 'POST',
@@ -279,3 +278,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+const themeToggleBtn = document.getElementById("themeToggleBtn");
+  const body = document.body;
+  const stationaryMenu = document.querySelector(".stationary-menu");
+  const clearBtn = document.querySelector(".clear-btn");
+  const saveBtn = document.querySelector(".save-btn");
+  const separar = document.querySelector(".separar");
+  const separarOne = document.querySelector(".separar1");
+  const theme = document.querySelector(".theme-btn");
+  const zoom = document.getElementById("zoomIn");
+  const zoomOut = document.getElementById("zoomOut");
+
+  let isDarkTheme = false;
+
+  themeToggleBtn.addEventListener("click", () => {
+    if (isDarkTheme) {
+      body.style.backgroundColor = "#f2f2f2";
+      body.style.background =
+      "conic-gradient(from 90deg at 1px 1px,#bebebe00 90deg,rgb(215, 215, 215) 0) 0 0/20px 20px";
+      stationaryMenu.style.backgroundColor = " rgb(235, 235, 235)";
+      clearBtn.style.filter = "invert(1)";
+      saveBtn.style.filter = "invert(1)";
+      zoom.style.filter = "none";
+      theme.style.filter = "none";
+      zoomOut.style.filter = "none";
+      separar.style.backgroundColor = "#cacaca";
+      separarOne.style.backgroundColor = "#cacaca";
+      
+    } else {
+      body.style.background = body.style.background =
+      "conic-gradient(from 90deg at 1px 1px, #ffffff00 90deg, rgba(255, 255, 255, 0.21) 0) 0 0/20px 20px";
+      body.style.backgroundColor = "#2c2c2c";
+      stationaryMenu.style.backgroundColor = " rgba(51, 51, 51,1)";
+      clearBtn.style.filter = "none";
+      saveBtn.style.filter = "none";
+      separar.style.backgroundColor = "#555";
+      separarOne.style.backgroundColor = "#555";
+      theme.style.filter = "invert(1)";
+      zoom.style.filter = "invert(1)";
+      zoomOut.style.filter = "invert(1)";
+    }
+    isDarkTheme = !isDarkTheme;
+  });
