@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>Sticky Note Workspace</title>
+  <link rel="stylesheet" href="workspace.css">
+  <link rel="stylesheet" href="home.css">
+  <style>
+    .workspace {
+      background: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="header-menu">
+      <a href="home.html"><img src="images/logo.svg" href="home.html" alt="Logo"></a>
+      <div class="separa"></div>
+      <a href="home.html">
+        <div>Homepage</div>
+      </a>
+      <div class="separa"></div>
+      <a href="workspace.html">
+        <div>Workspace</div>
+      </a>
+    </div>
+    <button id="logout-button" class="logout">Sign Out</button>
+  </div>
+
+
+  <div class="stationary-menu">
+    <div class="tools-section">
+      <div class="tools">
+        <div class="mini-sticky-note" data-color="#ffd7d4" aria-label="Add pink sticky note"
+          style="background-color: #FFD7D4;">+</div>
+        <div class="mini-sticky-note" data-color="#fcf4cd" aria-label="Add yellow sticky note"
+          style="background-color: #FCF4CD;">+</div>
+        <div class="mini-sticky-note" data-color="#cfffd1" aria-label="Add green sticky note"
+          style="background-color: #CFFFD1;">+</div>
+        <div class="mini-sticky-note" data-color="#d4f0ff" aria-label="Add blue sticky note"
+          style="background-color: #D4F0FF;">+</div>
+      </div>
+    </div>
+    <div class="separa"></div>
+    <div class="clear-section">
+      <div id="clearWorkspace" class="clear-btn" aria-label="Clear All Sticky Notes"><img src="images/delete_all.svg" alt="Delete All"></div>
+    </div>
+    <div class="separa"></div>
+    <div id="saveAllBtn">
+    <div id="saveWorkspace" class="save-btn" aria-label="Clear All Sticky Notes"><img src="images/save_all.svg" alt="Save All"></div></div>
+  </div>
+
+
+  <div id="workspace" class="workspace" aria-label="Workspace for sticky notes"></div>
+  <div class="zoom-controls">
+    <div id="zoomIn" class="zoom-btn"> <img src="images/more.svg" alt="Edit"></div>
+    <div id="zoomOut" class="zoom-btn"> <img src="images/less.svg" alt="Edit"></div>
+    <div id="themeToggleBtn" class="theme-btn" aria-label="Toggle Theme"><img src="images/dark.svg" alt="Edit"></div>
+  </div>
+  <div id="editor" class="hidden" aria-hidden="true">
+    <textarea id="editorText" placeholder="Edit your note..." aria-label="Edit your sticky note"></textarea>
+
+    <div class="color-picker">
+      <h2>Change Note Color:</h2>
+      <div class="color-options">
+        <div class="color-option" data-color="#ffd7d4" aria-label="Add pink sticky note"
+        style="background-color: #FFD7D4;"></div>
+      <div class="color-option" data-color="#fcf4cd" aria-label="Add yellow sticky note"
+        style="background-color: #FCF4CD;"></div>
+      <div class="color-option" data-color="#cfffd1" aria-label="Add green sticky note"
+        style="background-color: #CFFFD1;"></div>
+      <div class="color-option" data-color="#d4f0ff" aria-label="Add blue sticky note"
+        style="background-color: #D4F0FF;"></div>
+      </div>
+    </div>
+
+    <div class="editor-buttons">
+      <button id="saveEdit" aria-label="Save Note Edits">OK</button>
+      <button id="closeEdit" aria-label="Cancel Note Edits">Cancel</button>
+    </div>
+  </div>
+
+  <script defer src="workspace.js"></script>
+
+</body>
+
+</html>
