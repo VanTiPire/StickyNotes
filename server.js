@@ -77,6 +77,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
+
 app.get('/api/folders', async (req, res) => {
   const { username, filter } = req.query;
 
@@ -212,6 +213,71 @@ app.delete('/api/folders/delete', async (req, res) => {
     res.status(500).send('Error deleting folder.');
   }
 });
+
+app.get('/api/notes', async (req, res) => {
+  const { username } = req.query;  
+
+  if (!username) {
+    return res.status(400).send('Username is required.');
+  }
+
+  try {
+    const user = await db.collection('users').findOne({ username });
+    if (!user) {
+      return res.status(404).send('User not found.');
+    }
+
+    const notes = user.notes.map(note => ({
+      color: note.color,
+      text: note.text,
+      title: note.title || '',
+      left: note.left,
+      top: note.top,
+    })) || [];
+
+    res.json(notes);
+  } catch (err) {
+    console.error('Error fetching notes:', err);
+    res.status(500).send('Error fetching notes.');
+  }
+});
+
+
+app.post('/api/saveNotes', async (req, res) => {
+  const { username, notes } = req.body;
+
+  if (!username || !Array.isArray(notes)) {
+    return res.status(400).send('Username and notes are required.');
+  }
+
+  try {
+    const user = await db.collection('users').findOne({ username });
+    if (!user) {
+      return res.status(404).send('User not found.');
+    }
+
+    const formattedNotes = notes.map(note => ({
+      color: note.color,
+      text: note.text,
+      title: note.title || '',
+      left: note.left,
+      top: note.top,
+    }));
+
+    await db.collection('users').updateOne(
+      { username },
+      { $set: { notes: formattedNotes } }
+    );
+
+    res.json({ message: 'Notes saved successfully' });
+  } catch (err) {
+    console.error('Error saving notes:', err);
+    res.status(500).send('Error saving notes.');
+  }
+});
+
+
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
