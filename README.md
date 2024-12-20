@@ -1,5 +1,4 @@
-##Interactive Note Management System
-Sticky Notes Application
+##Interactive Note Management System - Sticky Notes Application
 
 This project is a web-based interactive note management system designed to help users organize and manage their notes and folders. It features a dashboard for quick access to recent workspaces and folders, along with a dynamic sticky note workspace equipped with drag-and-drop and editing capabilities.
 
@@ -37,14 +36,19 @@ This project is a web-based interactive note management system designed to help 
 
 ### Installation Steps
 
-1. Setting Up MongoDB:
+1. Clone the repository:
+   - git clone https://github.com/your-repo/interactive-note-management.git
+   - cd interactive-note-management
+
+2. Setting Up MongoDB:
    - npm install mongodb
 
-2. Setting Up express:
+3. Setting Up express:
    - npm install express
 
-3. Setting Up bcryptjs:
+4. Setting Up bcryptjs:
    - npm install bcryptjs
 
-4. Start the server:
+5. Start the server:
    - node server.js
+
