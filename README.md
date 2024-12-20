@@ -37,8 +37,8 @@ This project is a web-based interactive note management system designed to help 
 ### Installation Steps
 
 1. Clone the repository:
-   - git clone https://github.com/your-repo/interactive-note-management.git
-   - cd interactive-note-management
+     - git clone https://github.com/VanTiPire/StickyNotes.git
+   - cd StickyNotes
 
 2. Setting Up MongoDB:
    - npm install mongodb
